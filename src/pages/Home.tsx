@@ -145,19 +145,23 @@ function Home() {
       style={{
         display: "flex",
         flexDirection: "column",
-        flexWrap: "nowrap",
-        alignItems: "center",
+        alignItems: "flex-end",
       }}
     >
-      <h1>MagicBooks</h1>
-      <div style={{ display: "flex", margin: "1rem" }}>
+      <div
+        style={{
+          position: "absolute",
+          left: "0%",
+          top: "0%",
+          display: "flex",
+        }}
+      >
+        <h1>MagicBooks</h1>
         <SearchInput
           searchValue={searchValue}
           setSearchValue={setSearchValue}
         />
-        <FloatButton action={changeShowInputs} />
       </div>
-
       {showInputs && (
         <StyledForm>
           <StyledH3>Adicione as informações do livro</StyledH3>
@@ -231,6 +235,7 @@ function Home() {
           editMode={!!editMode}
         />
       )}
+      <FloatButton action={changeShowInputs} />
     </div>
   );
 }

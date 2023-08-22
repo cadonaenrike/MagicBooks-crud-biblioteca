@@ -5,7 +5,7 @@ export const InputWrapper = styled.div`
   justify-content: center;
   position: relative;
   margin-bottom: 1.05rem;
-  margin-right: 3rem;
+  margin-left: 70rem;
 `;
 
 export const Input = styled.input`
@@ -15,7 +15,6 @@ export const Input = styled.input`
   width: 50px;
   padding: 10px;
   outline: none;
-  border-radius: 100%;
   transition: 0.5s ease-in-out;
   background-color: #4c8b64;
   box-shadow: 0px 0px 8px rgb(255, 255, 255);
@@ -46,11 +45,11 @@ export const Icon = styled.button`
   border-radius: 50%;
   pointer-events: painted;
   background-color: transparent;
-  transition: 0.2s linear;
+  transition: 0.2s step-start;
 
   &:focus ~ ${Input}, ${Input}:focus {
     box-shadow: none;
-    width: 15rem;
+    width: 10rem;
     border-radius: 0px;
     background-color: transparent;
     border-bottom: 5px solid rgb(20, 220, 37);

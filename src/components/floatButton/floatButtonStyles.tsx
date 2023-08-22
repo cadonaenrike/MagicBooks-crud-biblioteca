@@ -1,9 +1,8 @@
 import { styled } from "styled-components";
 
 const ButtonStyled = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 1rem;
+
   font-size: 30px;
   background: none;
   border: none;
@@ -30,7 +29,8 @@ const ButtonStyled = styled.button`
     top: -50px;
     position: relative;
     font-weight: 600;
-    color: white;
+    color: #fcfcfc;
+    text-shadow: 4px 4px 2px #020202;
   }
 
   .svg-wrapper:hover .shape {

@@ -21,21 +21,21 @@ export const StyledTable = styled.table`
 
 export const StyledTh = styled.th`
   text-align: center;
-  border: 1px solid #050505;
-  color: #020202;
-  font-style: italic;
-  font-size: 1.8rem;
-  font-weight: 900;
+
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 400;
   padding: 8px 12px;
 `;
 
 export const StyledTd = styled.td`
   text-align: center;
-  border: 1px solid #050505;
-  color: #000000;
+  border-bottom: 1px solid #ffffff;
+  color: #ffffff;
   font-weight: 600;
   font-size: 1.5rem;
   padding: 10px 14px;
+  overflow-wrap: break-word;
 `;
 
 export const StyledTr = styled.tr`

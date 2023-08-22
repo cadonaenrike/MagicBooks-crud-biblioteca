@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50rem;
   gap: 5px;
   max-width: 600px;
   background-color: #fff;
   padding: 3rem;
   font-size: 1.2rem;
+  margin-top: 14rem;
 `;
 
 export const StyledH3 = styled.label`
@@ -37,6 +37,7 @@ export const StyledButton = styled.button`
   border-radius: 5px;
   background-color: #4c8b64;
   color: #fff;
+
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
