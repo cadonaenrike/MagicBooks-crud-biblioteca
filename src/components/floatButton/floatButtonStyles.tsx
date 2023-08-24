@@ -2,24 +2,23 @@ import { styled } from "styled-components";
 
 const ButtonStyled = styled.button`
   margin-top: 1rem;
-
   font-size: 30px;
-  background: none;
+  background-color: #4c8b64d3;
   border: none;
 
   .svg-wrapper {
     position: relative;
-    width: 190px;
+    width: 185px;
     height: 60px;
     text-align: center;
     cursor: pointer;
   }
 
   .shape {
-    stroke-dasharray: 240 800;
+    stroke-dasharray: 200 800;
     stroke-dashoffset: -200;
     fill: transparent;
-    stroke: rgb(20, 220, 37);
+    stroke: rgb(255, 255, 255);
     stroke-width: 10px;
     transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
   }
@@ -40,7 +39,6 @@ const ButtonStyled = styled.button`
   }
 
   .svg-wrapper:hover {
-    background-color: #4c8b64d3;
     transition: 0.2s;
   }
 `;

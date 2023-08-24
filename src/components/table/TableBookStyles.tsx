@@ -14,7 +14,7 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
   backdrop-filter: blur(19px) saturate(180%);
   -webkit-backdrop-filter: blur(19px) saturate(180%);
-  background-color: #fafcfa73;
+  background-color: #05050573;
   border-radius: 12px;
   text-align: center;
 `;

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 export const InputWrapper = styled.div`
+  position: relative;
+  left: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
   margin-bottom: 1.05rem;
-  margin-left: 70rem;
+  margin: 0;
+  padding: 0%;
 `;
 
 export const Input = styled.input`

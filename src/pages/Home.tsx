@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BookType from "../types/BookType";
 import TableBook from "../components/table/Table";
 import uuid from "react-uuid";
@@ -26,6 +26,31 @@ function Home() {
   const [showInfos, setShowInfos] = useState<boolean>(false);
   const [disableInput, setDisableInput] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [disableButton, setDisableButton] = useState(true);
+  const [disablePainel, setDisablePainel] = useState(true);
+
+  useEffect(() => {
+    if (
+      titulo.length >= 3 &&
+      autor.length >= 3 &&
+      anoPubli.length >= 3 &&
+      genero.length >= 3 &&
+      descricao.length >= 3
+    ) {
+      setDisableButton(false);
+    } else {
+      console.log("nao digitou ");
+      setDisableButton(true);
+    }
+  }, [titulo, autor, anoPubli, genero, descricao]);
+
+  useEffect(() => {
+    if (ArrayBooks.length > 0) {
+      setDisablePainel(false);
+    } else {
+      setDisablePainel(true);
+    }
+  }, [ArrayBooks]);
 
   function clearStates() {
     setTitulo("");
@@ -40,21 +65,6 @@ function Home() {
 
   function setDate() {
     setDataDeCadastro(currentYear);
-  }
-
-  function condictions(array: BookType) {
-    if (
-      array.titulo !== "" &&
-      array.anoPubli !== "" &&
-      array.autor !== "" &&
-      array.descricao !== "" &&
-      array.genero !== ""
-    ) {
-      return true;
-    } else {
-      alert("Preencha todos os campos!");
-      return false;
-    }
   }
 
   function filterBooksByTitle(books: BookType[]) {
@@ -77,10 +87,9 @@ function Home() {
       genero,
       descricao,
     };
-    if (condictions(newBook)) {
-      setArrayBooks([...ArrayBooks, newBook]);
-      clearStates();
-    }
+    setArrayBooks([...ArrayBooks, newBook]);
+    setDisablePainel(false);
+    clearStates();
   }
 
   function excluir(id: string) {
@@ -97,7 +106,7 @@ function Home() {
     const editBook = ArrayBooks.find((item) => item.Id === id);
     setShowInputs(true);
 
-    if (editBook && condictions(editBook)) {
+    if (editBook) {
       setTitulo(editBook.titulo);
       setAutor(editBook.autor);
       setAnoPubli(editBook.anoPubli);
@@ -117,7 +126,7 @@ function Home() {
 
       const editBook = ArrayBooks.find((item) => item.Id === editMode);
 
-      if (editBook && condictions(editBook)) {
+      if (editBook) {
         editBook.titulo = titulo;
         editBook.autor = autor;
         editBook.anoPubli = anoPubli;
@@ -162,80 +171,106 @@ function Home() {
           setSearchValue={setSearchValue}
         />
       </div>
-      {showInputs && (
-        <StyledForm>
-          <StyledH3>Adicione as informações do livro</StyledH3>
-          <StyledLabel htmlFor="titulo">Título:</StyledLabel>
-          <StyledInput
-            name="titulo"
-            placeholder="Título"
-            type="text"
-            value={titulo}
-            onChange={(e) => setTitulo(e.target.value)}
-          />
+      <div
+        style={{
+          backgroundImage: "url(./src/assets/fundo-livro.png)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          padding: "20rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "10rem",
+        }}
+      >
+        {showInputs && (
+          <StyledForm>
+            <StyledH3>Adicione as informações do livro</StyledH3>
+            <StyledLabel htmlFor="titulo">Título:</StyledLabel>
+            <StyledInput
+              name="titulo"
+              placeholder="Título"
+              type="text"
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
+            />
 
-          <StyledLabel htmlFor="autor">Autor:</StyledLabel>
-          <StyledInput
-            name="autor"
-            type="text"
-            placeholder="Autor"
-            value={autor}
-            onChange={(e) => setAutor(e.target.value)}
-          />
+            <StyledLabel htmlFor="autor">Autor:</StyledLabel>
+            <StyledInput
+              name="autor"
+              type="text"
+              placeholder="Autor"
+              value={autor}
+              onChange={(e) => setAutor(e.target.value)}
+            />
 
-          <StyledLabel htmlFor="anoPubli">Ano de Publicação:</StyledLabel>
-          <StyledInput
-            name="anoPubli"
-            type="date"
-            max={new Date().toISOString().split("T")[0]}
-            placeholder="Ano de Publicação"
-            value={anoPubli}
-            onChange={(e) => setAnoPubli(e.target.value)}
-          />
+            <StyledLabel htmlFor="anoPubli">Ano de Publicação:</StyledLabel>
+            <StyledInput
+              name="anoPubli"
+              type="date"
+              max={new Date().toISOString().split("T")[0]}
+              placeholder="Ano de Publicação"
+              value={anoPubli}
+              onChange={(e) => setAnoPubli(e.target.value)}
+            />
 
-          <StyledLabel htmlFor="dataCadastro">Data de Cadastro:</StyledLabel>
-          <StyledInput
-            disabled={disableInput === true}
-            name="dataCadastro"
-            type="date"
-            placeholder="Data de Cadastro"
-            value={dataDeCadastro}
-          />
+            <StyledLabel htmlFor="dataCadastro">Data de Cadastro:</StyledLabel>
+            <StyledInput
+              disabled={disableInput === true}
+              name="dataCadastro"
+              type="date"
+              placeholder="Data de Cadastro"
+              value={dataDeCadastro}
+            />
 
-          <StyledLabel htmlFor="genero">Gênero:</StyledLabel>
-          <StyledInput
-            name="genero"
-            type="text"
-            placeholder="Gênero"
-            value={genero}
-            onChange={(e) => setGenero(e.target.value)}
-          />
+            <StyledLabel htmlFor="genero">Gênero:</StyledLabel>
+            <StyledInput
+              name="genero"
+              type="text"
+              placeholder="Gênero"
+              value={genero}
+              onChange={(e) => setGenero(e.target.value)}
+            />
 
-          <StyledLabel htmlFor="descricao">Descrição:</StyledLabel>
-          <StyledInput
-            name="descricao"
-            type="text"
-            placeholder="Descrição"
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-          />
+            <StyledLabel htmlFor="descricao">Descrição:</StyledLabel>
+            <StyledInput
+              name="descricao"
+              type="text"
+              placeholder="Descrição"
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
+            />
 
-          <StyledButton onClick={handleClickButton}>
-            {editMode ? "Salvar" : "Cadastrar"}
-          </StyledButton>
-        </StyledForm>
-      )}
-      {!showInputs && (
-        <TableBook
-          arrayBooks={filterBooksByTitle(ArrayBooks)}
-          action={toggleInfos}
-          editar={editar}
-          excluir={excluir}
-          showInfos={showInfos}
-          editMode={!!editMode}
-        />
-      )}
-      <FloatButton action={changeShowInputs} />
+            <StyledButton
+              onClick={handleClickButton}
+              disabled={disableButton}
+              style={
+                disableButton
+                  ? {
+                      backgroundColor: "gray",
+                      cursor: "not-allowed",
+                      pointerEvents: "none",
+                    }
+                  : {}
+              }
+            >
+              {editMode ? "Salvar" : "Cadastrar"}
+            </StyledButton>
+          </StyledForm>
+        )}
+        {!showInputs && (
+          <TableBook
+            arrayBooks={filterBooksByTitle(ArrayBooks)}
+            action={toggleInfos}
+            editar={editar}
+            excluir={excluir}
+            showInfos={showInfos}
+            editMode={!!editMode}
+            disablePainelValue={disablePainel}
+          />
+        )}
+        <FloatButton action={changeShowInputs} />
+      </div>
     </div>
   );
 }

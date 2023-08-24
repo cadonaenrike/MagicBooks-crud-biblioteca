@@ -8,7 +8,6 @@ export const StyledForm = styled.div`
   background-color: #fff;
   padding: 3rem;
   font-size: 1.2rem;
-  margin-top: 14rem;
 `;
 
 export const StyledH3 = styled.label`

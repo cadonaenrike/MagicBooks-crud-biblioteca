@@ -8,7 +8,7 @@ import {
   EditButton,
   DeleteButton,
   InfoButton,
-} from "./TableBookStyles"; // Importe os estilos
+} from "./TableBookStyles";
 
 interface TableProps {
   arrayBooks: BookType[];
@@ -17,7 +17,8 @@ interface TableProps {
   action: () => void;
   showInfos?: boolean;
   editMode?: boolean;
-  searchValue?: string; // Defina como uma propriedade opcional
+  searchValue?: string;
+  disablePainelValue: boolean;
 }
 
 const TableBook: React.FC<TableProps> = ({
@@ -27,7 +28,8 @@ const TableBook: React.FC<TableProps> = ({
   editMode,
   action,
   showInfos,
-  searchValue = "", // Defina um valor padrão vazio
+  searchValue = "",
+  disablePainelValue,
 }) => {
   function filterBooksByTitle(books: BookType[], search: string) {
     if (!search) {
@@ -43,7 +45,7 @@ const TableBook: React.FC<TableProps> = ({
 
   return (
     <StyledTable>
-      {showInfos === true && (
+      {showInfos === true && disablePainelValue === false && (
         <>
           <thead>
             <StyledTr>
@@ -82,7 +84,7 @@ const TableBook: React.FC<TableProps> = ({
           </tbody>
         </>
       )}
-      {showInfos === false && (
+      {showInfos === false && disablePainelValue === false && (
         <>
           <thead>
             <StyledTr>
